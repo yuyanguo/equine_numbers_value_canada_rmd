@@ -62,7 +62,7 @@ max_horses <- horse_pop %>%
   summarize(Maximum = max(Value),
             Minimum = min(Value))
 kable(max_horses, 
-      caption = "Table 1. Maximum and minimum number of horses for each province between 1940 - 1972")
+      caption = "Table 1. Summary of the Maximum and minimum number of horses for each province between 1940 - 1972")
 ```
 
 Below we zoom in and look at the province of \`r max\_horses$Province[1]\`:
