@@ -1,5 +1,6 @@
 ---
 title: "Historical horse population in Canada"
+bibliography: R_ref.bib
 output: 
   github_document:
     toc: true
@@ -32,7 +33,7 @@ Horse population data were sourced from the [Government of Canada's Open Data we
 
 ## Methods
 
-The R programming language and the following R packages were used to perform the analysis: knitr and tidyverse. The code used to perform the analysis and create this report can be found here: <https://github.com/ttimbers/equine_numbers_value_canada_rmd>.
+The R programming language [@R] and the following R packages were used to perform the analysis: knitr [@knitr] and tidyverse [@tidyverse]. The code used to perform the analysis and create this report can be found here: <https://github.com/ttimbers/equine_numbers_value_canada_rmd>.
 
 ## Results
 
@@ -54,18 +55,19 @@ We can see from the visualisation above that Ontario, Saskatchewan and Alberta h
 
 Next we look at the range of the number horses for each provinces at any time point between 1940 - 1972:
 
-```{r max horse table, message = FALSE}}
+```{r max horse table, message = FALSE}
 max_horses <- horse_pop %>% 
   select(GEO, Value) %>% 
   rename(Province = GEO) %>% 
   group_by(Province) %>% 
   summarize(Maximum = max(Value),
             Minimum = min(Value))
+
 kable(max_horses, 
       caption = "Table 1. Summary of the Maximum and minimum number of horses for each province between 1940 - 1972")
 ```
 
-Below we zoom in and look at the province of \`r max\_horses$Province[1]\`:
+Below we zoom in and look at the province of `r max_horses$Province[1]`:
 
 ```{r plot province, fig.width=5, fig.height=4, fig.cap='Figure 2. Horse populations for Alberta between 1940 - 1972.', out.width='50%'}
 province_plot <- horse_pop %>% 
@@ -81,3 +83,5 @@ province_plot <- horse_pop %>%
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 province_plot
 ```
+
+# References
